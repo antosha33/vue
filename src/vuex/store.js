@@ -1,27 +1,28 @@
-import Vuex from 'vuex';
-import Vue from 'vue';
+import { createStore } from 'vuex'
 
-Vue.use(Vuex)
-// import swapiService from '../components/services';
-// const service = new swapiService();
+import swapiService from '../components/services';
+const service = new swapiService();
 
-// (async function(){
-// 	console.log(await service.getGoods());
-// })()
 
-export default new Vuex.Store({
+export default createStore({
 	state: {
 		products: []
 	},
-	mutations: {},
+	mutations: {
+		SET_PRODUCTS_TO_STATE(state, products) {
+			state.products = products;
+		}
+	},
 	actions: {
-
+		async GET_PRODUCTS({ commit }) {
+			const products = await service.getGoods();
+			commit('SET_PRODUCTS_TO_STATE', products);
+			console.log(products);
+		}
 	},
 	getters: {
-		PRODUCTS(state){
+		PRODUCTS(state) {
 			return state.products;
 		}
 	},
 })
-
-// export default store;
