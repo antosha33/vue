@@ -4,7 +4,7 @@
     <div class="catalog-item__price">{{ product_data.mass }}</div>
     <div class="catalog-item__price">{{ product_data.hair_color }}</div>
     <div class="catalog-item__descr">Описание</div>
-    <button class="btn" @click="sendDataToParent">add to cart</button>
+    <button class="btn" @click="addToCart">add to cart</button>
   </div>
 </template>
 
@@ -21,8 +21,8 @@ export default {
   },
 
   methods: {
-    sendDataToParent() {
-      this.$emit("sendArticle", this.product_data.article);
+    addToCart() {
+      this.$emit("addToCart", this.product_data);
     },
   },
 };

@@ -1,13 +1,14 @@
 <template>
   <div class="main-wrapper">
     <catalog></catalog>
-    <cart></cart>
+    <cart v-if="CART.length" :cart_data="CART" />
   </div>
 </template>
 
 <script>
 import catalog from "./catalog";
 import cart from "./cart";
+import { mapGetters } from "vuex";
 
 export default {
   name: "main-wrapper",
@@ -21,7 +22,9 @@ export default {
       title: "main wrapper",
     };
   },
-  computed: {},
+  computed: {
+    ...mapGetters(["CART"]),
+  },
   methods: {},
   watch: {},
   mounted() {
@@ -32,7 +35,7 @@ export default {
 
 <style scoped>
 .main-wrapper {
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
   max-width: 900px;

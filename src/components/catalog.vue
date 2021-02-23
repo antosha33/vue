@@ -4,9 +4,9 @@
     <div class="catalog__list">
       <catalog-item
         v-for="product in PRODUCTS"
-        :key="product.id"
+        :key="product.article"
         v-bind:product_data="product"
-        @sendArticle="showArticle"
+        @addToCart="addToCart"
       />
     </div>
   </div>
@@ -25,9 +25,9 @@ export default {
     return {};
   },
   methods: {
-    ...mapActions(["GET_PRODUCTS"]),
-    showArticle(data) {
-      console.log(data);
+    ...mapActions(["GET_PRODUCTS", "ADD_TO_CART"]),
+    addToCart(data) {
+      this.ADD_TO_CART(data);
     },
   },
   computed: {
